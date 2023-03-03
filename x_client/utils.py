@@ -1,6 +1,6 @@
 import numpy as np
 
-from .x_client_pb2 import NdArray
+from x_client.grpc.x_client_pb2 import NdArray
 
 
 def array_to_numpy(array: NdArray):
