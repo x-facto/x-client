@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package x_client;
+
+service XClient {
+    rpc infer(stream Request) returns (Response) {}
+}
+
+message NdArray {
+    string dtype = 1;
+    repeated int64 shape = 2;
+    bytes data = 3;
+}
+
+message Request {
+    repeated NdArray images = 1;
+}
+
+message Response {
+    repeated NdArray box = 1;
+    repeated NdArray pose = 2;
+}
