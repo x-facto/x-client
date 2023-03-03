@@ -5,7 +5,7 @@ import grpc
 from x_client.grpc import x_client_pb2 as x__client_dot_grpc_dot_x__client__pb2
 
 
-class XClientStub(object):
+class XInferenceServerStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,13 +15,13 @@ class XClientStub(object):
             channel: A grpc.Channel.
         """
         self.infer = channel.stream_unary(
-                '/x_client.XClient/infer',
+                '/x_client.XInferenceServer/infer',
                 request_serializer=x__client_dot_grpc_dot_x__client__pb2.Request.SerializeToString,
                 response_deserializer=x__client_dot_grpc_dot_x__client__pb2.Response.FromString,
                 )
 
 
-class XClientServicer(object):
+class XInferenceServerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def infer(self, request_iterator, context):
@@ -31,7 +31,7 @@ class XClientServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_XClientServicer_to_server(servicer, server):
+def add_XInferenceServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'infer': grpc.stream_unary_rpc_method_handler(
                     servicer.infer,
@@ -40,12 +40,12 @@ def add_XClientServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'x_client.XClient', rpc_method_handlers)
+            'x_client.XInferenceServer', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class XClient(object):
+class XInferenceServer(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -59,7 +59,7 @@ class XClient(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(request_iterator, target, '/x_client.XClient/infer',
+        return grpc.experimental.stream_unary(request_iterator, target, '/x_client.XInferenceServer/infer',
             x__client_dot_grpc_dot_x__client__pb2.Request.SerializeToString,
             x__client_dot_grpc_dot_x__client__pb2.Response.FromString,
             options, channel_credentials,

@@ -12,7 +12,7 @@ class XClient:
                        ('grpc.max_receive_message_length', 2 ** 31 - 1)]
 
         channel = grpc.insecure_channel(url, options=channel_opt)
-        self._stub = x_client_pb2_grpc.XClientStub(channel)
+        self._stub = x_client_pb2_grpc.XInferenceServerStub(channel)
         self.batch_size = batch_size
 
     def infer(self, images: List[np.ndarray]):

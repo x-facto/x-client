@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package x_client;
 
-service XClient {
+service XInferenceServer {
     rpc infer(stream Request) returns (Response) {}
 }
 
